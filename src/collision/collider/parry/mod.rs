@@ -417,7 +417,7 @@ impl std::fmt::Debug for Collider {
             TypedShape::HalfSpace(shape) => write!(f, "{:?}", shape),
             TypedShape::HeightField(shape) => write!(f, "{:?}", shape),
             TypedShape::Compound(_) => write!(f, "Compound (not representable)"),
-            TypedShape::Custom(shape) => write!(f, "{:?}", shape),
+            TypedShape::Custom(_) => write!(f, "Custom (not representable)"),
             #[cfg(feature = "3d")]
             TypedShape::ConvexPolyhedron(shape) => write!(f, "{:?}", shape),
             #[cfg(feature = "3d")]
