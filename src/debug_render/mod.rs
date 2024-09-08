@@ -336,8 +336,16 @@ fn debug_render_contacts(
                     }
                     #[cfg(feature = "3d")]
                     {
-                        gizmos.sphere(p1.f32(), default(), 0.1 * length_unit.0 as f32, color);
-                        gizmos.sphere(p2.f32(), default(), 0.1 * length_unit.0 as f32, color);
+                        gizmos.sphere(
+                            Isometry3d::new(p1.f32(), default()),
+                            0.1 * length_unit.0 as f32,
+                            color,
+                        );
+                        gizmos.sphere(
+                            Isometry3d::new(p2.f32(), default()),
+                            0.1 * length_unit.0 as f32,
+                            color,
+                        );
                     }
                 }
 

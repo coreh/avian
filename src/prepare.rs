@@ -120,35 +120,35 @@ impl Plugin for PreparePlugin {
                 let mut commands = world.commands();
                 let mut entity_commands = commands.entity(entity);
 
-                entity_commands.try_insert((
-                    AccumulatedTranslation::default(),
-                    lin_vel,
-                    ang_vel,
-                    PreSolveLinearVelocity::default(),
-                    PreSolveAngularVelocity::default(),
-                    force,
-                    torque,
-                    impulse,
-                    angular_impulse,
-                    restitution,
-                    friction,
-                    time_sleeping,
-                ));
-
-                entity_commands.try_insert((
-                    mass.unwrap_or(Mass(
-                        inverse_mass.map_or(0.0, |inverse_mass| 1.0 / inverse_mass.0),
-                    )),
-                    inverse_mass.unwrap_or(InverseMass(mass.map_or(0.0, |mass| 1.0 / mass.0))),
-                    inertia.unwrap_or(
-                        inverse_inertia
-                            .map_or(Inertia::ZERO, |inverse_inertia| inverse_inertia.inverse()),
-                    ),
-                    inverse_inertia.unwrap_or(
-                        inertia.map_or(InverseInertia::ZERO, |inertia| inertia.inverse()),
-                    ),
-                    center_of_mass,
-                ));
+                entity_commands
+                    .try_insert((
+                        AccumulatedTranslation::default(),
+                        lin_vel,
+                        ang_vel,
+                        PreSolveLinearVelocity::default(),
+                        PreSolveAngularVelocity::default(),
+                        force,
+                        torque,
+                        impulse,
+                        angular_impulse,
+                        restitution,
+                        friction,
+                        time_sleeping,
+                    ))
+                    .try_insert((
+                        mass.unwrap_or(Mass(
+                            inverse_mass.map_or(0.0, |inverse_mass| 1.0 / inverse_mass.0),
+                        )),
+                        inverse_mass.unwrap_or(InverseMass(mass.map_or(0.0, |mass| 1.0 / mass.0))),
+                        inertia
+                            .unwrap_or(inverse_inertia.map_or(Inertia::ZERO, |inverse_inertia| {
+                                inverse_inertia.inverse()
+                            })),
+                        inverse_inertia.unwrap_or(
+                            inertia.map_or(InverseInertia::ZERO, |inertia| inertia.inverse()),
+                        ),
+                        center_of_mass,
+                    ));
             });
 
         // Note: Collider logic is handled by the `ColliderBackendPlugin`

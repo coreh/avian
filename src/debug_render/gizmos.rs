@@ -178,7 +178,11 @@ impl<'w, 's> PhysicsGizmoExt for Gizmos<'w, 's, PhysicsGizmos> {
             }
             #[cfg(feature = "3d")]
             TypedShape::Ball(s) => {
-                self.sphere(position.f32(), rotation.f32(), s.radius as f32, color);
+                self.sphere(
+                    Isometry3d::new(position.f32(), rotation.f32()),
+                    s.radius as f32,
+                    color,
+                );
             }
             #[cfg(feature = "2d")]
             TypedShape::Cuboid(s) => {
@@ -488,8 +492,7 @@ impl<'w, 's> PhysicsGizmoExt for Gizmos<'w, 's, PhysicsGizmos> {
             self.circle_2d(point.f32(), 0.1 * length_unit as f32, point_color);
             #[cfg(feature = "3d")]
             self.sphere(
-                point.f32(),
-                default(),
+                Isometry3d::new(point.f32(), default()),
                 0.1 * length_unit as f32,
                 point_color,
             );
@@ -552,8 +555,7 @@ impl<'w, 's> PhysicsGizmoExt for Gizmos<'w, 's, PhysicsGizmos> {
             self.circle_2d(hit.point1.f32(), 0.1 * length_unit as f32, point_color);
             #[cfg(feature = "3d")]
             self.sphere(
-                hit.point1.f32(),
-                default(),
+                Isometry3d::new(hit.point1.f32(), default()),
                 0.1 * length_unit as f32,
                 point_color,
             );
