@@ -118,7 +118,7 @@ impl Plugin for PreparePlugin {
                 let center_of_mass = *entity_ref.get::<CenterOfMass>().unwrap_or(&default());
 
                 let mut commands = world.commands();
-                let mut entity_commands = commands.entity(entity);
+                let entity_commands = commands.entity(entity);
 
                 entity_commands
                     .try_insert((
@@ -377,7 +377,7 @@ pub fn init_transforms<C: Component>(
             default()
         };
 
-        let mut cmds = commands.entity(entity);
+        let cmds = commands.entity(entity);
 
         // Insert the position and rotation.
         // The values are either unchanged (Position and Rotation already exist)
