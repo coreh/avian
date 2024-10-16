@@ -715,9 +715,9 @@ fn log_overlap_at_spawn(
                 Some(n) => format!("{:?} ({n})", contacts.entity2),
                 None => format!("{:?}", contacts.entity2),
             };
-            warn!(
-                "{debug_id1} and {debug_id2} are overlapping at spawn, which can result in explosive behavior.",
-            );
+            // warn!(
+            //     "{debug_id1} and {debug_id2} are overlapping at spawn, which can result in explosive behavior.",
+            // );
             debug!("{debug_id1} is at {}", position1.0);
             debug!("{debug_id2} is at {}", position2.0);
         }
