@@ -156,3 +156,8 @@ required-features = ["3d"]
 name = "cubes"
 required-features = ["3d", "default-collider"]
 harness = false
+
+[patch.crates-io]
+bevy = { path = "../../bevy" }
+bevy_math = { path = "../../bevy/crates/bevy_math" }
+bevy_heavy = { path = "../../bevy_heavy" }
