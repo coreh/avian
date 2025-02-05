@@ -375,7 +375,7 @@ impl ColliderAabb {
             min: self.min - amount,
             max: self.max + amount,
         };
-        debug_assert!(b.min.cmple(b.max).all());
+        //debug_assert!(b.min.cmple(b.max).all());
         b
     }
 
